@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Website personal branding Ardi Pratama — pembicara, fasilitator, dan penggerak pengembangan diri.">
   <meta name="theme-color" content="#252525">
   <title>Ardi Pratama — Pembicara & Penggerak Perubahan</title>
@@ -29,7 +29,9 @@
     :root[data-theme="sedang"] { --paper: #414141; --alt: #252525; --line: #5a5a5a; --sand: #333333; --nav-bg: rgba(65,65,65,.94);
     }
     * { box-sizing: border-box; }
-    :root { color-scheme: dark; }
+    :root { color-scheme: dark; box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    html { scroll-padding-top: calc(80px + env(safe-area-inset-top, 0px)); }
+    body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--nav-bg); z-index: 30; }
     html { scroll-behavior: smooth; }
     body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.65; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
@@ -46,7 +48,7 @@
     .button-outline { background: transparent; color: var(--ink); border: 1px solid #5b626c; }
     .button-outline:hover { color: #fff; border-color: var(--primary); background: var(--primary); }
     /* Navigation */
-    .nav-wrap { position: sticky; top: 0; z-index: 20; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav-wrap { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
     nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { font: 700 1.1rem var(--sans); letter-spacing: .12em; }
     .brand span { color: #FF7B7B; }
@@ -139,6 +141,16 @@
     .footer-brand { font: 700 1rem var(--sans); letter-spacing: .12em; color: var(--ink); }
     .footer-links { display: flex; gap: 20px; }
     .footer-links a:hover { color: var(--ink); }
+    .skills { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+    .skills small { width: 100%; color: var(--accent-text); font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .skills span { padding: 6px 13px; border: 1px solid var(--line); border-radius: 4px; font-size: .78rem; color: var(--ink); }
+    .timeline { border-top: 1px solid var(--line); }
+    .tl-item { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .tl-year { color: var(--accent-text); font: 600 .82rem var(--sans); letter-spacing: .08em; padding-top: 4px; }
+    .tl-item h3 { margin: 0 0 4px; font: 600 1.2rem/1.35 var(--sans); letter-spacing: -.01em; }
+    .tl-org { color: var(--muted); font-size: .84rem; font-weight: 500; }
+    .tl-item p { margin: 10px 0 0; color: var(--muted); font-size: .9rem; max-width: 620px; }
+    @media (max-width: 640px) { .tl-item { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; } }
     .theme-picker { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #fff; border: 1px solid rgba(0,0,0,.15); border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,.2); font: 600 .68rem var(--sans); color: #16181b; }
     .theme-picker button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; outline: 1px solid rgba(0,0,0,.3); cursor: pointer; padding: 0; }
     .theme-picker button.on { outline: 2px solid #16181b; }
@@ -188,6 +200,7 @@
       <button class="menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
         <a href="#tentang">Tentang</a>
+        <a href="#pengalaman">Pengalaman</a>
         <a href="#fokus">Bidang</a>
         <a href="#video">Video</a>
         <a href="#kegiatan">Kegiatan</a>
@@ -211,7 +224,7 @@
         </div>
         <div class="hero-visual">
           <div class="hero-photo">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1100&q=85" alt="Potret Ardi Pratama mengenakan pakaian formal">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyYTJhMmEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE5MCIgcj0iNzAiIGZpbGw9IiM2NjYiLz48cGF0aCBkPSJNNjAgNTAwUTYwIDMzMCAyMDAgMzIwUTM0MCAzMzAgMzQwIDUwMFoiIGZpbGw9IiM2NjYiLz48cmVjdCB4PSIwIiB5PSI0NzAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjwvc3ZnPg==" alt="Potret Ardi Pratama mengenakan pakaian formal">
           </div>
           <div class="hero-stamp">Bertumbuh<br>bersama<br>berdampak</div>
           <div class="photo-label"><strong>Ardi Pratama</strong><span>Pembicara & Penggerak Perubahan</span></div>
@@ -229,7 +242,7 @@
     <section class="section" id="tentang">
       <div class="container about-grid">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85" alt="Sesi diskusi dan pembelajaran bersama komunitas">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyYTJhMmEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE5MCIgcj0iNzAiIGZpbGw9IiM2NjYiLz48cGF0aCBkPSJNNjAgNTAwUTYwIDMzMCAyMDAgMzIwUTM0MCAzMzAgMzQwIDUwMFoiIGZpbGw9IiM2NjYiLz48cmVjdCB4PSIwIiB5PSI0NzAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjwvc3ZnPg==" alt="Sesi diskusi dan pembelajaran bersama komunitas">
           <div class="image-caption">Belajar · Bertumbuh · Berdampak</div>
         </div>
         <div class="about-copy">
@@ -242,6 +255,19 @@
             <div class="stat"><strong>80+</strong><span>Forum & kegiatan</span></div>
             <div class="stat"><strong>2K+</strong><span>Peserta kegiatan</span></div>
           </div>
+          <div class="skills"><small>Keahlian</small><span>Public Speaking</span><span>Fasilitasi</span><span>Pengembangan SDM</span><span>Kepemimpinan</span><span>Penyusunan Modul</span><span>Coaching</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pengalaman" style="border-top:1px solid var(--line)">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Pengalaman</span><h2>Perjalanan profesional.</h2><p>Peran dan pengalaman yang membentuk cara saya mendampingi orang lain bertumbuh.</p></div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">2022 — Sekarang</div><div><h3>Pembicara &amp; Fasilitator Independen</h3><span class="tl-org">Berbagai organisasi dan komunitas</span><p>Mengisi seminar, pelatihan, dan sesi fasilitasi bertema kepemimpinan dan pengembangan diri.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2018 — 2022</div><div><h3>Trainer Pengembangan SDM</h3><span class="tl-org">Nama Lembaga Pelatihan</span><p>Merancang dan membawakan program pelatihan untuk peserta dari berbagai instansi dan perusahaan.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2015 — 2018</div><div><h3>Koordinator Program Pendidikan</h3><span class="tl-org">Nama Organisasi</span><p>Mengelola program belajar, tim relawan, dan kolaborasi dengan sekolah serta komunitas.</p></div></div>
+          <div class="tl-item"><div class="tl-year">2013 — 2015</div><div><h3>Penggerak Komunitas</h3><span class="tl-org">Komunitas Lokal</span><p>Memulai kegiatan sosial dan ruang belajar bersama bagi pemuda di lingkungan sekitar.</p></div></div>
         </div>
       </div>
     </section>
@@ -270,16 +296,16 @@
         </div>
         <div class="video-grid">
           <a class="video-card" href="https://www.youtube.com/" target="_blank" rel="noopener">
-            <div class="video-thumb"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=85" alt="Pembicara sedang menyampaikan materi di atas panggung"><div class="play"><span>▶</span></div></div>
+            <div class="video-thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjMzMCIgY3k9IjExMCIgcj0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjxwb2x5Z29uIHBvaW50cz0iMCw0MDAgMCwyOTAgMTUwLDE3MCAyODAsMjcwIDQxMCwxMzAgNjQwLDMxMCA2NDAsNDAwIiBmaWxsPSIjNjY2Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDM0MCAyMDAsMjQwIDM2MCwzMzAgNTIwLDIzMCA2NDAsMzMwIDY0MCw0MDAiIGZpbGw9IiM0NDQiLz48L3N2Zz4=" alt="Pembicara sedang menyampaikan materi di atas panggung"><div class="play"><span>▶</span></div></div>
             <div class="video-info"><small>Materi Utama</small><h3>Menemukan Potensi dan Tujuan dalam Diri</h3></div>
           </a>
           <div class="video-side">
             <a class="video-card" href="https://www.youtube.com/" target="_blank" rel="noopener">
-              <div class="video-thumb"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=700&q=85" alt="Suasana seminar dan peserta"></div>
+              <div class="video-thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjEwMCIgcj0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjxwb2x5Z29uIHBvaW50cz0iMCw0MDAgMCwyOTAgMTUwLDE3MCAyODAsMjcwIDQxMCwxMzAgNjQwLDMxMCA2NDAsNDAwIiBmaWxsPSIjNjY2Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDM0MCAyMDAsMjQwIDM2MCwzMzAgNTIwLDIzMCA2NDAsMzMwIDY0MCw0MDAiIGZpbGw9IiM0NDQiLz48L3N2Zz4=" alt="Suasana seminar dan peserta"></div>
               <div class="video-info"><small>Seminar</small><h3>Membangun Mental Bertumbuh</h3></div>
             </a>
             <a class="video-card" href="https://www.youtube.com/" target="_blank" rel="noopener">
-              <div class="video-thumb"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=85" alt="Diskusi kelompok dalam pelatihan"></div>
+              <div class="video-thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkwIiByPSIzMCIgZmlsbD0iI0FGMDQwNCIgb3BhY2l0eT0iLjg1Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDI5MCAxNTAsMTcwIDI4MCwyNzAgNDEwLDEzMCA2NDAsMzEwIDY0MCw0MDAiIGZpbGw9IiM2NjYiLz48cG9seWdvbiBwb2ludHM9IjAsNDAwIDAsMzQwIDIwMCwyNDAgMzYwLDMzMCA1MjAsMjMwIDY0MCwzMzAgNjQwLDQwMCIgZmlsbD0iIzQ0NCIvPjwvc3ZnPg==" alt="Diskusi kelompok dalam pelatihan"></div>
               <div class="video-info"><small>Wawancara</small><h3>Belajar Memimpin dari Hal Sederhana</h3></div>
             </a>
           </div>
@@ -296,9 +322,9 @@
           <p>Potret perjalanan, kolaborasi, dan ruang belajar bersama berbagai komunitas.</p>
         </div>
         <div class="activity-grid">
-          <article class="activity-card"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=85" alt="Peserta mengikuti pelatihan di ruang kelas"><div class="activity-content"><span>Pelatihan · 2026</span><h3>Workshop Kepemimpinan Muda</h3><p>Sesi pembelajaran dan diskusi untuk mengembangkan kapasitas pemimpin muda.</p></div></article>
-          <article class="activity-card"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=85" alt="Komunitas berkumpul dalam kegiatan bersama"><div class="activity-content"><span>Komunitas · 2026</span><h3>Bergerak Bersama Masyarakat</h3><p>Kolaborasi komunitas untuk membangun lingkungan yang lebih berdaya.</p></div></article>
-          <article class="activity-card"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?auto=format&fit=crop&w=800&q=85" alt="Pembicara memberikan materi dalam seminar"><div class="activity-content"><span>Seminar · 2025</span><h3>Ruang Inspirasi dan Aksi</h3><p>Berbagi gagasan dan pengalaman untuk mendorong perubahan positif.</p></div></article>
+          <article class="activity-card"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjMzMCIgY3k9IjExMCIgcj0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjxwb2x5Z29uIHBvaW50cz0iMCw0MDAgMCwyOTAgMTUwLDE3MCAyODAsMjcwIDQxMCwxMzAgNjQwLDMxMCA2NDAsNDAwIiBmaWxsPSIjNjY2Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDM0MCAyMDAsMjQwIDM2MCwzMzAgNTIwLDIzMCA2NDAsMzMwIDY0MCw0MDAiIGZpbGw9IiM0NDQiLz48L3N2Zz4=" alt="Peserta mengikuti pelatihan di ruang kelas"><div class="activity-content"><span>Pelatihan · 2026</span><h3>Workshop Kepemimpinan Muda</h3><p>Sesi pembelajaran dan diskusi untuk mengembangkan kapasitas pemimpin muda.</p></div></article>
+          <article class="activity-card"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjEwMCIgcj0iMzAiIGZpbGw9IiNBRjA0MDQiIG9wYWNpdHk9Ii44NSIvPjxwb2x5Z29uIHBvaW50cz0iMCw0MDAgMCwyOTAgMTUwLDE3MCAyODAsMjcwIDQxMCwxMzAgNjQwLDMxMCA2NDAsNDAwIiBmaWxsPSIjNjY2Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDM0MCAyMDAsMjQwIDM2MCwzMzAgNTIwLDIzMCA2NDAsMzMwIDY0MCw0MDAiIGZpbGw9IiM0NDQiLz48L3N2Zz4=" alt="Komunitas berkumpul dalam kegiatan bersama"><div class="activity-content"><span>Komunitas · 2026</span><h3>Bergerak Bersama Masyarakat</h3><p>Kolaborasi komunitas untuk membangun lingkungan yang lebih berdaya.</p></div></article>
+          <article class="activity-card"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1NTUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZDJkMmQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjkwIiByPSIzMCIgZmlsbD0iI0FGMDQwNCIgb3BhY2l0eT0iLjg1Ii8+PHBvbHlnb24gcG9pbnRzPSIwLDQwMCAwLDI5MCAxNTAsMTcwIDI4MCwyNzAgNDEwLDEzMCA2NDAsMzEwIDY0MCw0MDAiIGZpbGw9IiM2NjYiLz48cG9seWdvbiBwb2ludHM9IjAsNDAwIDAsMzQwIDIwMCwyNDAgMzYwLDMzMCA1MjAsMjMwIDY0MCwzMzAgNjQwLDQwMCIgZmlsbD0iIzQ0NCIvPjwvc3ZnPg==" alt="Pembicara memberikan materi dalam seminar"><div class="activity-content"><span>Seminar · 2025</span><h3>Ruang Inspirasi dan Aksi</h3><p>Berbagi gagasan dan pengalaman untuk mendorong perubahan positif.</p></div></article>
         </div>
       </div>
     </section>
